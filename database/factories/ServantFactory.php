@@ -17,9 +17,9 @@ class ServantFactory extends Factory
     public function definition()
     {
         return [
-            //
-            "name" => $faker->name,
-            "address" => $faker->address,
+            
+            'name' => fake()->name(),
+            'address' => fake()->unique()->safeEmail(),
         ];
     }
 }

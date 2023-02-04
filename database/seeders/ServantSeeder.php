@@ -16,6 +16,6 @@ class ServantSeeder extends Seeder
     public function run()
     {
         //
-        factory(Servant::class, 10)-›create();
+        // factory(Servant::class, 10)->create();
     }
 }

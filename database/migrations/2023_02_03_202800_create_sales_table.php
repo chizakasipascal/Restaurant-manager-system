@@ -15,17 +15,14 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger("servant_id")->unsigned();
-            $table->integer("quantity");
-            $table->decimal("total_price")->default(0);
-            $table->decimal("total_received")->default(0);
-            $table->decimal("change")->default(0);
+            $table->unsignedBigInteger("servant_id");
+            $table->integer ("quantity");
+            $table->decimal("price" , 8, 2);
+            $table->decimal("total", 8, 2);
+            $table->decimal ("change", 8, 2)->default (0);
             $table->string("payment_type")->default("cash");
-            $table->string("payment_status")->default("paid");
+            $table->string ("payment_status")->default("paid");
             $table->timestamps();
-            $table->foreign('servant_id')
-                ->references("id")
-                ->on("servants")->onDelete("cascade");
         });
     }
 

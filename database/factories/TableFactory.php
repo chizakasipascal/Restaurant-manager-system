@@ -17,12 +17,12 @@ class TableFactory extends Factory
      */
     public function definition()
     {
-        $name =$faker->name;
+        // $name =$faker->name;
         return [
             //
-            "name" => $name,
-            "slug" => Str::slug($name),
-            "state" =>round(random_int(0,1)),
+            'name' => fake()->name(),
+            'slug' => Str::slug(fake()->name()),
+            'status' =>$this->faker->numberBetween(0,1),
         ];
     }
 }
