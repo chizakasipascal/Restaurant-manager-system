@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
 use App\Models\Menu;
-
+use App\Category;
 class MenuController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +20,9 @@ class MenuController extends Controller
     public function index()
     {
         //
+        return view("menus.index")->with([
+            "menus" => Menu::paginate(5)
+        ]);
     }
 
     /**
@@ -26,6 +33,9 @@ class MenuController extends Controller
     public function create()
     {
         //
+         return view("menus.create")->with([
+            "categories" => Category::all()
+        ]);
     }
 
     /**
@@ -37,6 +47,34 @@ class MenuController extends Controller
     public function store(StoreMenuRequest $request)
     {
         //
+        //validation
+        $this->validate($request, [
+            "title" => "required|min:3|unique:menus,title",
+            "description" => "required|min:5",
+            "image" => "required|image|mimes:png,jpg,jpeg|max:2048",
+            "price" => "required|numeric",
+            "category_id" => "required|numeric",
+        ]);
+
+        //store data
+        if ($request->hasFile("image")) {
+            $file = $request->image;
+            $imageName = time() . "_" . $file->getClientOriginalName();
+            $file->move(public_path('images/menus'), $imageName);
+            $title = $request->title;
+            Menu::create([
+                "title" => $title,
+                "slug" => Str::slug($title),
+                "description" =>  $request->description,
+                "price" =>  $request->price,
+                "category_id" =>  $request->category_id,
+                "image" =>  $imageName,
+            ]);
+            //redirect user
+            return redirect()->route("menus.index")->with([
+                "success" => "menu ajouté avec succés"
+            ]);
+        }
     }
 
     /**
@@ -48,6 +86,9 @@ class MenuController extends Controller
     public function show(Menu $menu)
     {
         //
+        return view("menus.show")->with([
+            "menu" => $menu
+        ]); 
     }
 
     /**
@@ -59,6 +100,10 @@ class MenuController extends Controller
     public function edit(Menu $menu)
     {
         //
+        return view("menus.edit")->with([
+            "categories" => Category::all(),
+            "menu" => $menu
+        ]);
     }
 
     /**
@@ -71,6 +116,48 @@ class MenuController extends Controller
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
         //
+        //validation
+        $this->validate($request, [
+            "title" => "required|min:3|unique:menus,title," . $menu->id,
+            "description" => "required|min:5",
+            "image" => "image|mimes:png,jpg,jpeg|max:2048",
+            "price" => "required|numeric",
+            "category_id" => "required|numeric",
+        ]);
+        //store data
+        if ($request->hasFile("image")) {
+            unlink(public_path('images/menus/' . $menu->image));
+            $file = $request->image;
+            $imageName = time() . "_" . $file->getClientOriginalName();
+            $file->move(public_path('images/menus'), $imageName);
+            $title = $request->title;
+            Menu::create([
+                "title" => $title,
+                "slug" => Str::slug($title),
+                "description" =>  $request->description,
+                "price" =>  $request->price,
+                "category_id" =>  $request->category_id,
+                "image" =>  $imageName,
+            ]);
+            //redirect user
+            return redirect()->route("menus.index")->with([
+                "success" => "menu modifié avec succés"
+            ]);
+        } else {
+            $title = $request->title;
+            $menu->update([
+                "title" => $title,
+                "slug" => Str::slug($title),
+                "description" =>  $request->description,
+                "price" =>  $request->price,
+                "category_id" =>  $request->category_id
+            ]);
+            //redirect user
+            return redirect()->route("menus.index")->with([
+                "success" => "menu modifié avec succés"
+            ]);
+        }
+   
     }
 
     /**
@@ -81,6 +168,13 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        //
+        
+        //remove image
+        unlink(public_path('images/menus/' . $menu->image));
+        $menu->delete();
+        //redirect user
+        return redirect()->route("menus.index")->with([
+            "success" => "menu supprimé avec succés"
+        ]);
     }
 }

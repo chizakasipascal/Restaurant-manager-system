@@ -8,6 +8,13 @@ use App\Models\Servant;
 
 class ServantController extends Controller
 {
+
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,11 @@ class ServantController extends Controller
      */
     public function index()
     {
-        //
+        // 
+        return view("servants.index")->with([
+            "servants" => Servant::paginate(10);
+        ]);
+        
     }
 
     /**
@@ -26,6 +37,7 @@ class ServantController extends Controller
     public function create()
     {
         //
+         return view("servants.create");
     }
 
     /**
@@ -36,7 +48,21 @@ class ServantController extends Controller
      */
     public function store(StoreServantRequest $request)
     {
-        //
+         
+        //validation
+        $this->validate($request, [
+            "name" => "required|min:3"
+        ]);
+        //store data
+        Servants::create([
+            "name" => $request->name,
+            "address" => $request->address
+        ]);
+        //redirect user
+        return redirect()->route("servants.index")->with([
+            "success" => "serveur ajouté avec succés"
+        ]);
+    
     }
 
     /**
@@ -48,6 +74,10 @@ class ServantController extends Controller
     public function show(Servant $servant)
     {
         //
+        return view("servants.show")->with([
+            "servant" => $servant;
+        ]);
+
     }
 
     /**
@@ -59,6 +89,9 @@ class ServantController extends Controller
     public function edit(Servant $servant)
     {
         //
+        return view("servants.edit")->with([
+            "servant" => $servant;
+        ]);
     }
 
     /**
@@ -70,7 +103,20 @@ class ServantController extends Controller
      */
     public function update(UpdateServantRequest $request, Servant $servant)
     {
-        //
+         //validation
+        $request->validate($request,[
+             "name" => "required|min:3" 
+        ]); 
+        // store category
+         
+        Servant::update([
+            'name' =>$request->name,
+            'address' =>$request->address,
+        ]);
+        //redirect user
+        return redirect()->route("servants.index")->with([
+            "success" => "serveur modifié avec succés"
+        ]);
     }
 
     /**
@@ -81,6 +127,11 @@ class ServantController extends Controller
      */
     public function destroy(Servant $servant)
     {
-        //
+          //delete category
+        $servant->delete();
+        //redirect user
+        return redirect()->route("servants.index")->with([
+            "success" => "serveur supprimée avec succés"
+        ]);
     }
 }

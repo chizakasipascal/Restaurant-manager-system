@@ -8,6 +8,11 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+ 
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +21,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        return view("categories.index")->with([
+            "categories" => Category::paginate(10);
+        ]);
     }
 
     /**
@@ -26,6 +34,7 @@ class CategoryController extends Controller
     public function create()
     {
         //
+        return view("categories.create");
     }
 
     /**
@@ -36,7 +45,21 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        //validation
+        $request->validate($request,[
+            'title' =>'required'
+        ]); 
+        // store category
+        $title = $request->title; 
+        Category::create([
+            'title' =>$title,
+            'slug' =>Str::slug($title)
+        ]);
+        //redirect user
+        return redirect()->route("categories.index")->with([
+            "success" => "catégorie ajoutée avec succés"
+        ]);
+    
     }
 
     /**
@@ -48,6 +71,9 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+        return view("categories.index")->with([
+            "category" => $category;
+        ]);
     }
 
     /**
@@ -59,6 +85,9 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        return view("categories.edit")->with([
+            "category" => $category;
+        ]);
     }
 
     /**
@@ -71,6 +100,20 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         //
+         //validation
+        $request->validate($request,[
+            'title' =>'required'
+        ]); 
+        // update category
+        $title = $request->title; 
+        Category::update([
+            'title' =>$title,
+            'slug' =>Str::slug($title)
+        ]);
+        //redirect user
+        return redirect()->route("categories.index")->with([
+            "success" => "catégorie modifiée avec succés"
+        ]);
     }
 
     /**
@@ -81,6 +124,12 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+         
+        //delete category
+        $category->delete();
+        //redirect user
+        return redirect()->route("categories.index")->with([
+            "success" => "catégorie supprimée avec succés"
+        ]);
     }
 }
