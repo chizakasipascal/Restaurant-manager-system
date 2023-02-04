@@ -9,8 +9,10 @@ use App\Models\User;
 use App\Models\Table;
 use App\Models\Servant;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Database\Seeders\CategorySeeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,13 +23,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        
-         \App\Models\User::factory(10)->create();
+         
+         \App\Models\User::factory(1)->create();
          \App\Models\Category::factory(10)->create();
          \App\Models\Menu::factory(10)->create();
         //  \App\Models\Sale::factory(10)->create();
          \App\Models\Servant::factory(10)->create();
          \App\Models\Table::factory(10)->create();
+ 
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
