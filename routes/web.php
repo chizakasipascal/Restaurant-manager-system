@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\TableController;
+use App\Http\Controllers\ServantController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,14 +25,17 @@ Route::get('/', function () {
 
 Auth::routes(["register" => false, "reset" => false]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 //
-Route::resource('categories', 'CategoryController');
-Route::resource('tables', 'TableController');
-Route::resource('servants', 'ServantsController');
-Route::resource('menus', 'MenuController');
+Route::resource('categories', CategoryController::class);
+Route::resource('tables', TableController::class);
+Route::resource('servants', ServantController::class);
+Route::resource('menus', MenuController::class);
 
+ 
+
+ 
 //
 // Auth::routes();
 

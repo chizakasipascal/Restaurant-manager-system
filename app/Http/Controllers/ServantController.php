@@ -24,7 +24,7 @@ class ServantController extends Controller
     {
         // 
         return view("servants.index")->with([
-            "servants" => Servant::paginate(10);
+            "servants" => Servant::paginate(10)
         ]);
         
     }
@@ -75,7 +75,7 @@ class ServantController extends Controller
     {
         //
         return view("servants.show")->with([
-            "servant" => $servant;
+            "servant" => $servant
         ]);
 
     }
@@ -90,7 +90,7 @@ class ServantController extends Controller
     {
         //
         return view("servants.edit")->with([
-            "servant" => $servant;
+            "servant" => $servant
         ]);
     }
 

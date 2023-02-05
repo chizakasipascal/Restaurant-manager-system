@@ -22,7 +22,7 @@ class TableController extends Controller
     {
         //
         return view("tables.index")->with([
-            "tables" =>Table::paginate(10);
+            "tables" =>Table::paginate(10)
         ]);
     }
 
@@ -74,7 +74,7 @@ class TableController extends Controller
     {
         //
          return view("tables.show")->with([
-            "tables" => $table;
+            "tables" => $table
         ]);
     }
 
@@ -88,7 +88,7 @@ class TableController extends Controller
     {
         //
          return view("tables.edit")->with([
-            "tables" => $table;
+            "tables" => $table
         ]);
     }
 

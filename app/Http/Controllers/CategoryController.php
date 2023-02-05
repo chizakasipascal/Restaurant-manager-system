@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -22,7 +23,7 @@ class CategoryController extends Controller
     {
         //
         return view("categories.index")->with([
-            "categories" => Category::paginate(10);
+            "categories" => Category::paginate(10)
         ]);
     }
 
@@ -46,7 +47,8 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         //validation
-        $request->validate($request,[
+         
+        $this->validate($request,[
             'title' =>'required'
         ]); 
         // store category
@@ -72,7 +74,7 @@ class CategoryController extends Controller
     {
         //
         return view("categories.index")->with([
-            "category" => $category;
+            "category" => $category
         ]);
     }
 
@@ -86,7 +88,7 @@ class CategoryController extends Controller
     {
         //
         return view("categories.edit")->with([
-            "category" => $category;
+            "category" => $category
         ]);
     }
 
@@ -101,12 +103,13 @@ class CategoryController extends Controller
     {
         //
          //validation
-        $request->validate($request,[
+        $this->validate($request,[
             'title' =>'required'
         ]); 
         // update category
         $title = $request->title; 
-        Category::update([
+      
+        $category->update([
             'title' =>$title,
             'slug' =>Str::slug($title)
         ]);
@@ -124,7 +127,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-         
+        //
         //delete category
         $category->delete();
         //redirect user
