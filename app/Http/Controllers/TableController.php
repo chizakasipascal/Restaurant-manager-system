@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Table;
+use Illuminate\Support\Str;
 use App\Http\Requests\StoreTableRequest;
 use App\Http\Requests\UpdateTableRequest;
-use App\Models\Table;
 
 class TableController extends Controller
 {
@@ -55,7 +56,7 @@ class TableController extends Controller
         $name=$request->name;
         Table::create([
             "name" =>  $name ,
-            "slug" => Strt::slug($name),
+            "slug" => Str::slug($name),
             "status" => $request->status,
         ]);
         //redirect user
