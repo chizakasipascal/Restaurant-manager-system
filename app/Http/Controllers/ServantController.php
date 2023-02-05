@@ -51,10 +51,10 @@ class ServantController extends Controller
          
         //validation
         $this->validate($request, [
-            "name" => "required|min:3"
+            "name" => "required"
         ]);
         //store data
-        Servants::create([
+        Servant::create([
             "name" => $request->name,
             "address" => $request->address
         ]);
@@ -104,12 +104,12 @@ class ServantController extends Controller
     public function update(UpdateServantRequest $request, Servant $servant)
     {
          //validation
-        $request->validate($request,[
-             "name" => "required|min:3" 
+        $this->validate($request,[
+             "name" => "required" 
         ]); 
         // store category
          
-        Servant::update([
+        $servant->update([
             'name' =>$request->name,
             'address' =>$request->address,
         ]);

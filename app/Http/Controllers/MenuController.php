@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
 use App\Models\Menu;
-use App\Category;
+use App\Models\Category;
 class MenuController extends Controller
 {
     public function __construct(){
