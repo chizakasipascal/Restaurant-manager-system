@@ -126,37 +126,39 @@ class MenuController extends Controller
         ]);
         //store data
         if ($request->hasFile("image")) {
-            unlink(public_path('images/menus/' . $menu->image));
-            $file = $request->image;
+
+            $file=$request->image;
             $imageName = time() . "_" . $file->getClientOriginalName();
             $file->move(public_path('images/menus'), $imageName);
-            $title = $request->title;
-            Menu::create([
-                "title" => $title,
-                "slug" => Str::slug($title),
-                "description" =>  $request->description,
-                "price" =>  $request->price,
-                "category_id" =>  $request->category_id,
-                "image" =>  $imageName,
-            ]);
-            //redirect user
-            return redirect()->route("menus.index")->with([
-                "success" => "menu modifié avec succés"
-            ]);
-        } else {
+            $menu->image =$imageName;
+        }
             $title = $request->title;
             $menu->update([
                 "title" => $title,
                 "slug" => Str::slug($title),
                 "description" =>  $request->description,
                 "price" =>  $request->price,
-                "category_id" =>  $request->category_id
+                "category_id" =>  $request->category_id,
+                "image" => $imageName,
             ]);
             //redirect user
             return redirect()->route("menus.index")->with([
                 "success" => "menu modifié avec succés"
             ]);
-        }
+        // } else {
+        //     $title = $request->title;
+        //     $menu->update([
+        //         "title" => $title,
+        //         "slug" => Str::slug($title),
+        //         "description" =>  $request->description,
+        //         "price" =>  $request->price,
+        //         "category_id" =>  $request->category_id
+        //     ]);
+        //     //redirect user
+        //     return redirect()->route("menus.index")->with([
+        //         "success" => "menu modifié avec succés"
+        //     ]);
+        // }
    
     }
 
@@ -170,7 +172,7 @@ class MenuController extends Controller
     {
         
         //remove image
-        unlink(public_path('images/menus/' . $menu->image));
+        // unlink(public_path('images/menus/' . $menu->image));
         $menu->delete();
         //redirect user
         return redirect()->route("menus.index")->with([

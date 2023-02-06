@@ -36,11 +36,11 @@
                                         </div>
                                         <input type="number" name="price" class="form-control" placeholder="Prix"
                                             value="{{ $menu->price }}">
-                                        <div class="input-group-append">
+                                        <di class="input-group-append">
                                             <div class="input-group-text">
                                                 .00
                                             </div>
-                                        </div>
+                                        </di v>
                                     </div>
                                     <div class="my-2">
                                         <img src="{{ asset('images/menus/' . $menu->image) }}" width="200" height="200"
