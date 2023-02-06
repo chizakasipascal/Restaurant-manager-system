@@ -9,12 +9,53 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             @include('layouts.sidebar')
                         </div>
-                    </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <h3 class="text-muted border-bottom">
+                                    <div class="col-md-12">
+                                        {{ Carbon\Carbon::now() }}
+                                    </div>
+                                </h3>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            @foreach ($tables as $table)
+                                                {{-- {{ $table }} --}}
 
-                    {{-- <div class="card">
+                                                <div class="col-sm-3">
+                                                    <div
+                                                        class="card p-2 mb-2 d-flex flex-column justify-content-center align-items-center">
+                                                        <div class="algin-self-end mb-2">
+                                                            <input type="checkbox" name="table_id[]" id="table"
+                                                                value="{{ $table->id }}">
+                                                        </div>
+                                                        <i class="fas fa-chair fa-5x"></i>
+                                                        <span class="mt-2 text-muted font-weight-bold">
+                                                            {{ $table->name }}
+                                                        </span>
+                                                        <div class="d-flex justify-content-center">
+                                                            <a href="{{ route('tables.edit', $table->slug) }}"
+                                                                class="btn btn-warning btn-sm">
+                                                                <i class="fas fa-edit"></i> </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                {{-- <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="d-flex flex-row justify-content-between align-items-center border-bottom pb-1">
@@ -28,11 +69,11 @@
                             </div>
                         </div>
                     </div> --}}
-                </div>
             </div>
-        </form>
+    </div>
+    </form>
 
-        {{-- <div class="row justify-content-center">
+    {{-- <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
