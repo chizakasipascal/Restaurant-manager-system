@@ -110,20 +110,22 @@ class SalesController extends Controller
      * @param  \App\Sales  $sales
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sale $sale)
     {
         //get sale to update
-        $sales = Sales::findOrFail($id);
+        // $sales = Sales::findOrFail($id);
         //get sale tables
-        $tables = $sales->tables()->where('sales_id', $sales->id)->get();
+        $tables = $sale->tables()->where('sale_id', $sale->id)->get();
         //get table menus
-        $menus = $sales->menus()->where('sales_id', $sales->id)->get();
+        $menus = $sale->menus()->where('sale_id', $sale->id)->get();
         return view("sales.edit")->with([
             "tables" => $tables,
             "menus" => $menus,
-            "sale" => $sales,
-            "servants" => Servants::all()
+            "sale" => $sale,
+            "servants" => Servant::all()
         ]);
+
+           
     }
 
     /**
@@ -177,10 +179,7 @@ class SalesController extends Controller
      */
     public function destroy(Sale $sale)
     {
-
-
-
-         $sale->tables()->update([
+        $sale->tables()->update([
             "status" => 1,
         ]);
 
