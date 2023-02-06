@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\SalesController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ServantController;
 use App\Http\Controllers\CategoryController;
@@ -32,6 +33,9 @@ Route::resource('categories', CategoryController::class);
 Route::resource('tables', TableController::class);
 Route::resource('servants', ServantController::class);
 Route::resource('menus', MenuController::class);
+
+Route::resource('sales', SalesController::class);
+// Route::get('payments', [PaymentController::class ,'index'])->name("payments.index");
 
  
 

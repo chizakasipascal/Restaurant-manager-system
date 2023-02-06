@@ -26,7 +26,7 @@
                             </div>
                             <div class="col-sm-4 d-flex flex-column align-items-center justify-items-center">
                                 <i class="fa fa-shopping-cart fa-4x text-danger"></i>
-                                <a href="#" class="btn btn-link font-weight-bold">
+                                <a href="{{ route('sales.create') }}" class="btn btn-link font-weight-bold">
                                     Sales
                                 </a>
                             </div>

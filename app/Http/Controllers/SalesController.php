@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
  
-use App\Table;
-use App\Category;
-use App\Servant;
-use App\Sale;
+use App\Models\Table;
+use App\Models\Category;
+use App\Models\Servant;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 
 class SalesController extends Controller
@@ -23,14 +23,14 @@ class SalesController extends Controller
     public function index()
     {
         //
-        // $sales = Sales::orderBy("created_at", "DESC")->paginate(10);
-        // return view("sales.index")->with([
-        //     "sales" => $sales
-        // ]);
-
+        // $sales = Sale::orderBy("created_at", "DESC")->paginate(10);
         return view("sales.index")->with([
-            "sales" => Sale::latest()->paginate(10) 
+            "sales" => Sale::paginate(10) 
         ]);
+
+        // return view("sales.index")->with([
+        //     "sales" => Sale::latest()->paginate(10) 
+        // ]);
 
     }
 
