@@ -64,14 +64,14 @@ class SalesController extends Controller
             "menu_id" => "required",
             "servant_id" => "required",
             "quantity" => "required|numeric",
-            "total" => "required|numeric",
+            // "total" => "required|numeric",
             // "total_received" => "required|numeric",
             "change" => "required|numeric",
             "payment_type" => "required",
             "payment_status" => "required",
         ]);
         //store data
-        $sale = new Sales();
+        $sale = new Sale();
         $sale->servant_id = $request->servant_id;
         $sale->quantity = $request->quantity;
         $sale->price = $request->price;
@@ -96,10 +96,10 @@ class SalesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Sales  $sales
+     * @param  \App\Models\Sale  $sales
      * @return \Illuminate\Http\Response
      */
-    public function show(Sales $sales)
+    public function show(Sale $sales)
     {
         //
     }
@@ -107,7 +107,7 @@ class SalesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Sales  $sales
+     * @param  \App\Models\Sale   $sales
      * @return \Illuminate\Http\Response
      */
     public function edit(Sale $sale)
@@ -132,7 +132,7 @@ class SalesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sales  $sales
+     * @param  \App\Models\Sale   $sales
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Sale $sale)
@@ -174,7 +174,7 @@ class SalesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Sales  $sales
+     * @param  \App\Models\Sale   $sales
      * @return \Illuminate\Http\Response
      */
     public function destroy(Sale $sale)

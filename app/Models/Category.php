@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Menu;
 use Illuminate\Database\Eloquent\Model;
-use App\Menu;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+// use App\Menu;
 class Category extends Model
 {
     use HasFactory;

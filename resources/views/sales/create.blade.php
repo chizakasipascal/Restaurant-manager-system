@@ -47,156 +47,191 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                    // Menus
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-12 card p-3">
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                @foreach ($categories as $category)
+                                                    <li class="nav-item">
+                                                        <a class="nav-link mr-1 {{ $category->slug === 'samaki' ? 'active' : '' }}"
+                                                            data-toggle="pill" id="{{ $category->slug }}-tab"
+                                                            href="#{{ $category->slug }}" role="tab"
+                                                            aria-controls="{{ $category->slug }}" aria-selected="true">
+                                                            {{ $category->title }}
 
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                {{-- <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="d-flex flex-row justify-content-between align-items-center border-bottom pb-1">
-                                    <h3 class="text-secondary">
-                                        <i class="fas fa-credit-card"></i> Manage
-                                    </h3>
-                                    <a href="{{ route('sales.index') }}" class="btn btn-primary">
-                                        <i class="fas fa-plus fa-x2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
-            </div>
-    </div>
-    </form>
-
-    {{-- <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="d-flex flex-row justify-content-between align-items-center border-bottom pb-1">
-                                    <h3 class="text-secondary">
-                                        <i class="fas fa-credit-card"></i> Ventes
-                                    </h3>
-                                    <a href="{{ route('sales.index') }}" class="btn btn-primary">
-                                        <i class="fas fa-plus fa-x2"></i>
-                                    </a>
-                                </div>
-                                <table class="table table-hover table-responsive-sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Menus</th>
-                                            <th>Tables</th>
-                                            <th>Sérveur</th>
-                                            <th>Quantité</th>
-                                            <th>Total</th>
-                                            <th>Type de paiement</th>
-                                            <th>Etat de paiement</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($sales as $sale)
-                                            {{ $sale }}
-                                            <tr>
-                                                <td>
-                                                    {{ $sale->id }}
-                                                </td>
-                                                <td>
-                                                    @foreach ($sale->menus()->where('sales_id', $sale->id)->get() as $menu)
-                                                        <div class="col-md-4 mb-2">
-                                                            <div class="h-100">
-                                                                <div
-                                                                    class="d-flex
-                                                                flex-column justify-content-center
-                                                                align-items-center">
-                                                                    <img src="{{ asset('images/menus/' . $menu->image) }}"
-                                                                        alt="{{ $menu->title }}"
-                                                                        class="img-fluid rounded-circle" width="50"
-                                                                        height="50">
-                                                                    <h5 class="font-weight-bold mt-2">
-                                                                        {{ $menu->title }}
-                                                                    </h5>
-                                                                    <h5 class="text-muted">
-                                                                        {{ $menu->price }} DH
-                                                                    </h5>
+                                                        </a>
+                                                        {{-- <a href="#{{ $category->slug }}"
+                                                            class="nav-link mr-1 {{ $category->slug === 'samaki' ? 'active' : '' }}"
+                                                            id="{{ $category->slug }}-tab" data-toggle="pill" role="tab"
+                                                            aria-controls="{{ $category->slug }}" aria-selected="true">
+                                                            {{ $category->title }}
+                                                        </a> --}}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                            <div class="tab-content" id="pills-tabcontent">
+                                                @foreach ($categories as $category)
+                                                    <div class="tab-pane fade {{ $category->slug === 'samaki' ? 'show active' : '' }}"
+                                                        id="{{ $category->slug }}" role="tabpanel"
+                                                        aria-labelledby="pills-home-tab">
+                                                        <div class="row">
+                                                            @foreach ($category->menus as $menu)
+                                                                <div class="col-md-4 mb-2">
+                                                                    <div class="card h-100">
+                                                                        <div
+                                                                            class="card-body d-flex
+                                                                                flex-column justify-content-center
+                                                                                align-items-center">
+                                                                            <div class="align-self-end mb-2">
+                                                                                <input type="checkbox" name="menu_id[]"
+                                                                                    id="menu_id"
+                                                                                    value="{{ $menu->id }}">
+                                                                            </div>
+                                                                            <img src="{{ asset('images/menus/' . $menu->image) }}"
+                                                                                alt="{{ $menu->title }}"
+                                                                                class="img-fluid rounded-circle"
+                                                                                width="100" height="100">
+                                                                            <h5 class="font-weight-bold mt-2">
+                                                                                {{ $menu->title }}
+                                                                            </h5>
+                                                                            <h5 class="text-muted">
+                                                                                {{ $menu->price }} DH
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
+                                                            @endforeach
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mx-auto">
+                                                    <div class="form-group mb-2">
+                                                        <select name="servant_id" class="form-control">
+                                                            <option value="" selected disabled>
+                                                                Sérveur
+                                                            </option>
+                                                            @foreach ($servants as $servant)
+                                                                <option value="{{ $servant->id }}">
+                                                                    {{ $servant->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                Qté
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    @foreach ($sale->tables()->where('sales_id', $sale->id)->get() as $table)
-                                                        <div class="col-md-4 mb-2">
-                                                            <div class="h-100">
-                                                                <div
-                                                                    class="d-flex
-                                                                flex-column justify-content-center
-                                                                align-items-center">
-                                                                    <i class="fa fa-chair fa-3x"></i>
-                                                                    <h5 class="text-muted mt-2">
-                                                                        {{ $table->name }}
-                                                                    </h5>
-                                                                </div>
+                                                        <input type="number" name="quantity" class="form-control"
+                                                            placeholder="Qté">
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                $
                                                             </div>
                                                         </div>
-                                                    @endforeach
-                                                </td>
-                                                <td>
-                                                    {{ $sale->servant->name }}
-                                                </td>
-                                                <td>
-                                                    {{ $sale->quantity }}
-                                                </td>
-                                                <td>
-                                                    {{ $sale->total_received }}
-                                                </td>
-                                                <td>
-                                                    {{ $sale->payment_type === 'cash' ? 'Espéce' : 'Carte bancaire' }}
-                                                </td>
-                                                <td>
-                                                    {{ $sale->payment_status === 'paid' ? 'Payé' : 'Impayé' }}
-                                                </td>
-                                                <td class="d-flex flex-row justify-content-center align-items-center">
-                                                    <a href="{{ route('sales.edit', $sale->id) }}"
-                                                        class="btn btn-warning mr-1">
-                                                        <i class="fas fa-edit"></i>
-                                                    </a>
-                                                    <form id="{{ $sale->id }}"
-                                                        action="{{ route('sales.destroy', $sale->id) }}" method="post">
-                                                        @csrf
-                                                        @method('DELETE')
+                                                        <input type="number" name="price" class="form-control"
+                                                            placeholder="Prix">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text">
+                                                                .00
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                $
+                                                            </div>
+                                                        </div>
+                                                        <input type="number" name="total" class="form-control"
+                                                            placeholder="Total">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text">
+                                                                .00
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">
+                                                                $
+                                                            </div>
+                                                        </div>
+                                                        <input type="number" name="change" class="form-control"
+                                                            placeholder="Reste">
+                                                        <div class="input-group-append">
+                                                            <div class="input-group-text">
+                                                                .00
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <select name="payment_type" class="form-control">
+                                                            <option value="" selected disabled>
+                                                                Type de paiement
+                                                            </option>
+                                                            <option value="cash">
+                                                                Espéce
+                                                            </option>
+                                                            <option value="card">
+                                                                Carte bancaire
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group mb-2">
+                                                        <select name="payment_status" class="form-control">
+                                                            <option value="" selected disabled>
+                                                                Etat de paiement
+                                                            </option>
+                                                            <option value="paid">
+                                                                Payé
+                                                            </option>
+                                                            <option value="unpaid">
+                                                                Impayé
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <button
-                                                            onclick="
-                                                                event.preventDefault();
-                                                                if(confirm('Voulez vous supprimer la vente {{ $sale->id }} ?'))
-                                                                document.getElementById({{ $sale->id }}).submit()
-                                                            "
-                                                            class="btn btn-danger">
-                                                            <i class="fas fa-trash"></i>
+                                                            onclick="event.preventDefault();
+                                                                document.getElementById('add-sale').submit();"class="btn btn-primary">
+                                                            Valider
                                                         </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                                <div class="my-3 d-flex justify-content-center align-items-center">
-                                    {{ $sales->links() }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-        </div> --}}
-
+        </form>
 
     </div>
+@endsection
+
+@section('javascript')
+    <script>
+        function print(el) {
+            const page = document.body.innerHTML;
+            const content = document.getElementById(el).innerHTML;
+            document.body.innerHTML = content;
+            window.print();
+            document.body.innerHTML = page;
+        }
+    </script>
 @endsection

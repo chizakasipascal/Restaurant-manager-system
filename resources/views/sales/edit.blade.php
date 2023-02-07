@@ -9,6 +9,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <div class="row">
+
                         <div class="col-md-12 mb-3">
                             <div class="form-group">
                                 <a href="/payments" class="btn btn-outline-secondary">
@@ -17,8 +18,11 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
+
                         <div class="card-body">
+
                             <div class="row">
                                 @foreach ($tables as $table)
                                     <div class="col-md-3">
@@ -35,7 +39,7 @@
                                             <span class="mt-2 text-muted font-weight-bold">
                                                 {{ $table->name }}
                                             </span>
-                                            <hr>
+
                                         </div>
                                     </div>
                                 @endforeach
@@ -166,16 +170,16 @@
                             <div class="form-group">
                                 <button
                                     onclick="event.preventDefault();
-                                        document.getElementById("add-sale").submit(); "
-                                        class="btn btn-primary"
-                                    >
-                                        Valider
-                                    </button>
-                                </div>
+                                        document.getElementById('add-sale').submit();
+                                    "
+                                    class="btn btn-primary">
+                                    Valider
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
 @endsection

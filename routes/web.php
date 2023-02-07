@@ -35,7 +35,7 @@ Route::resource('servants', ServantController::class);
 Route::resource('menus', MenuController::class);
 
 Route::resource('sales', SalesController::class);
-// Route::get('payments', [PaymentController::class ,'index'])->name("payments.index");
+Route::get('payments', [PaymentController::class ,'index'])->name("payments.index");
 
  
 

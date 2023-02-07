@@ -80,7 +80,11 @@
                 </div>
             </div>
         </nav>
-
+        <div class="row">
+            <div class="col-md-8 mx-auto my-4">
+                @include('layouts.alert')
+            </div>
+        </div>
         <main class="py-4">
             @yield('content')
         </main>
