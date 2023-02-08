@@ -3,9 +3,10 @@
 namespace App\Exports;
 
 use App\Models\sale;
-use Maatwebsite\Excel\Concerns\FromCollection;
+// use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromView;
-use App\Exports\SalesExports;
+// use App\Exports\SalesExports;
+use Illuminate\Contracts\View\View;
 class SalesExports implements FromView
 {
 
@@ -19,7 +20,7 @@ class SalesExports implements FromView
         $this->to = $to; 
         $this->from = $from;
         $this->sales=Sale::whereBetween("updated_at",[$from, $to])
-            ->where("payment_status", "paid")-get(); 
+            ->where("payment_status", "paid")->get(); 
        $this->total = $this->sales->sum("total");
 
     }
@@ -32,9 +33,7 @@ class SalesExports implements FromView
     //     return sale::all();
     // }
 
-    /**
-     * @return \Illuminate\Support\Collection
-     */
+    
     public function view(): View
     {
         return view('reports.export', [

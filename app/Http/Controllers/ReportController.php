@@ -36,7 +36,7 @@ class ReportController extends Controller
             "sales" => $sales->get()
         ]);
     }
-    public  function genreate(Request $request)
+    public  function generate(Request $request)
     {
        return Excel::download(new SalesExports($request->from, $request->to), "sales.xlsx");
     }

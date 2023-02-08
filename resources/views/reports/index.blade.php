@@ -28,8 +28,8 @@
                             </div>
                             @isset($total)
                                 <div class="row my-4">
-                                    <div class="col-md-10  mx-auto">
-                                        <h4 class="text-secondary font-weight-bold">
+                                    <div class="col-md-12 ">
+                                        <h4 class="my-4 text-secondary font-weight-bold">
                                             Rapport de {{ $startDate }} à {{ $endDate }}
                                         </h4>
                                         <div class="card">
@@ -114,7 +114,7 @@
                                                         Total : {{ $total }} $
                                                     </span>
                                                 </p>
-                                                <form action="#" method="post">
+                                                <form action="{{ route('reports.generate') }}" method="post">
                                                     @csrf
                                                     <div class="form-group">
                                                         <input type="hidden" name="from" value="{{ $startDate }}"

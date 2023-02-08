@@ -21,19 +21,19 @@
                                 <i class="fa fa-cog fa-4x text-success"></i>
 
                                 <a href="{{ route('categories.index') }}" class="btn btn-link font-weight-bold">
-                                    Manages
+                                    Gérer
                                 </a>
                             </div>
                             <div class="col-sm-4 d-flex flex-column align-items-center justify-items-center">
                                 <i class="fa fa-shopping-cart fa-4x text-danger"></i>
                                 <a href="{{ route('sales.create') }}" class="btn btn-link font-weight-bold">
-                                    Sales
+                                    Ventes
                                 </a>
                             </div>
                             <div class="col-sm-4 d-flex flex-column align-items-center justify-items-center">
                                 <i class="fa fa-chart-bar fa-4x text-primary"></i>
                                 <a href="{{ route('reports.index') }}" class="btn btn-link font-weight-bold">
-                                    Repports
+                                    Rapports
                                 </a>
                             </div>
                         </div>

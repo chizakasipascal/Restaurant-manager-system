@@ -18,7 +18,7 @@
                     {{ $sale->id }}
                 </td>
                 <td>
-                    @foreach($sale->menus()->where("sales_id",$sale->id)->get() as $menu)
+                    @foreach ($sale->menus()->where('sale_id', $sale->id)->get() as $menu)
                         <h5>
                             {{ $menu->title }}
                         </h5>
@@ -28,35 +28,35 @@
                     @endforeach
                 </td>
                 <td>
-                    @foreach($sale->tables()->where("sales_id",$sale->id)->get() as $table)
+                    @foreach ($sale->tables()->where('sale_id', $sale->id)->get() as $table)
                         <h5>
                             {{ $table->name }}
                         </h5>
                     @endforeach
                 </td>
                 <td>
-                    {{ $sale->servant->name}}
+                    {{ $sale->servant->name }}
                 </td>
                 <td>
-                    {{ $sale->quantity}}
+                    {{ $sale->quantity }}
                 </td>
                 <td>
-                    {{ $sale->total_received}}
+                    {{ $sale->total }}
                 </td>
                 <td>
-                    {{ $sale->payment_type === "cash" ? "Espéce" : "Carte bancaire"}}
+                    {{ $sale->payment_type === 'cash' ? 'Espéce' : 'Carte bancaire' }}
                 </td>
                 <td>
-                    {{ $sale->payment_status === "paid" ? "Payé" : "Impayé"}}
+                    {{ $sale->payment_status === 'paid' ? 'Payé' : 'Impayé' }}
                 </td>
             </tr>
         @endforeach
         <tr>
             <td colspan="5">
-                Rapport de {{ $from }} à {{ $to }}
+                Rapport de {{ $startDate }} à {{ $endDate }}
             </td>
             <td>
-                {{ $total }} dh
+                {{ $total }}
             </td>
         </tr>
     </tbody>

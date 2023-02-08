@@ -53,7 +53,7 @@
                                                                         {{ $menu->title }}
                                                                     </h5>
                                                                     <h5 class="text-muted">
-                                                                        {{ $menu->price }} DH
+                                                                        {{ $menu->price }}
                                                                     </h5>
                                                                 </div>
                                                             </div>
