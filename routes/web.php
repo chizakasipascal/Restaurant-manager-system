@@ -35,10 +35,13 @@ Route::resource('servants', ServantController::class);
 Route::resource('menus', MenuController::class);
 
 Route::resource('sales', SalesController::class);
-Route::get('payments', [PaymentController::class ,'index'])->name("payments.index");
+// Route::get('payments', [PaymentController::class ,'index'])->name("payments.index");
 
  
 
+Route::get('reports', 'ReportController@index')->name("reports.index");
+Route::post('reports/generate', 'ReportController@generate')->name("reports.generate");
+Route::post('reports/export', 'ReportController@export')->name("reports.export");
  
 //
 // Auth::routes();
