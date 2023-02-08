@@ -32,7 +32,7 @@
                             </div>
                             <div class="col-sm-4 d-flex flex-column align-items-center justify-items-center">
                                 <i class="fa fa-chart-bar fa-4x text-primary"></i>
-                                <a href="#" class="btn btn-link font-weight-bold">
+                                <a href="{{ route('reports.index') }}" class="btn btn-link font-weight-bold">
                                     Repports
                                 </a>
                             </div>

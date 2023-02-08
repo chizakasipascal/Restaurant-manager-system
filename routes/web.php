@@ -7,6 +7,7 @@ use App\Http\Controllers\SalesController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\ServantController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +40,10 @@ Route::resource('sales', SalesController::class);
 
  
 
-Route::get('reports', 'ReportController@index')->name("reports.index");
-Route::post('reports/generate', 'ReportController@generate')->name("reports.generate");
-Route::post('reports/export', 'ReportController@export')->name("reports.export");
+Route::get('reports', [ReportController::class,'index'])->name("reports.index");
+Route::post('show/reports', [ReportController::class,'show'])->name("reports.show");
+// Route::post('generate/reports', [ReportController::class,'export'])->name("reports.export");
+Route::post('export/reports', [ReportController::class,'generate'])->name("reports.generate");
  
 //
 // Auth::routes();
