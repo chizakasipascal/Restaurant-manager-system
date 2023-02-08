@@ -46,7 +46,7 @@
                                                     {{ substr($menu->description, 0, 100) }}
                                                 </td>
                                                 <td>
-                                                    {{ $menu->price }} DH
+                                                    {{ $menu->price }} $
                                                 </td>
                                                 <td>
                                                     {{ $menu->category->title }}

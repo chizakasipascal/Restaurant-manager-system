@@ -15,13 +15,21 @@
                         <div class="col-md-9">
                             <div class="row">
                                 <h3 class="text-muted border-bottom">
-                                    <div class="col-md-12">
-                                        {{ Carbon\Carbon::now() }}
+                                    <div class="d-flex justify-content-between mb-3">
+
+                                        <h3 class="text-muted border-bottom">
+                                            {{ Carbon\Carbon::now() }}
+                                        </h3>
+                                        <a href="{{ route('sales.index') }}" class="btn btn-outline-secondary">
+                                            Toutes les ventes
+                                        </a>
                                     </div>
+
                                 </h3>
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row">
+
                                             @foreach ($tables as $table)
                                                 {{-- {{ $table }} --}}
 
@@ -41,6 +49,96 @@
                                                                 class="btn btn-warning btn-sm">
                                                                 <i class="fas fa-edit"></i> </a>
                                                         </div>
+                                                        <hr>
+                                                        @foreach ($table->sales as $sale)
+                                                            @if ($sale->created_at >= Carbon\Carbon::today())
+                                                                <div style="border :2px dashed pink"
+                                                                    class="my-2 shadow w-100" id="{{ $sale->id }}">
+                                                                    <div class="card">
+                                                                        <div
+                                                                            class="card-body d-flex
+                                                                                flex-column justify-content-center
+                                                                                align-items-center">
+                                                                            @foreach ($sale->menus()->where('sale_id', $sale->id)->get() as $menu)
+                                                                                <h5 class="font-weight-bold mt-2">
+                                                                                    {{ $menu->title }}
+                                                                                </h5>
+                                                                                <span class="text-muted">
+                                                                                    {{ $menu->price }} $
+                                                                                </span>
+                                                                            @endforeach
+
+                                                                            <h5 class="font-weight-bold mt-2">
+                                                                                <span class="badge bg-danger">
+                                                                                    Sérveur : {{ $sale->servant->name }}
+                                                                                </span>
+                                                                            </h5>
+                                                                            <h5 class="font-weight-bold mt-2">
+                                                                                <span class="badge bg-secondary">
+                                                                                    Qté : {{ $sale->quantity }}
+                                                                                </span>
+                                                                            </h5>
+                                                                            <h5 class="font-weight-bold mt-2">
+                                                                                <span class="badge bg-light"
+                                                                                    style="color:black">
+                                                                                    Prix : {{ $sale->price }} $
+                                                                                </span>
+                                                                            </h5>
+                                                                            <h5 class="font-weight-bold mt-2">
+                                                                                <span class="badge bg-light"
+                                                                                    style="color:black">
+                                                                                    Total : {{ $sale->total }} $
+                                                                                </span>
+                                                                            </h5>
+                                                                            <h5 class="font-weight-bold mt-2">
+                                                                                <span class="badge bg-light"
+                                                                                    style="color:black">
+                                                                                    Reste : {{ $sale->change }} $
+                                                                                </span>
+                                                                            </h5>
+                                                                            <h5 class="font-weight-bold mt-2">
+                                                                                <span class="badge bg-light"
+                                                                                    style="color:black">
+                                                                                    Type de paiement :
+                                                                                    {{ $sale->payment_type === 'cash' ? 'Espéce' : 'Carte bancaire' }}
+                                                                                </span>
+                                                                            </h5>
+                                                                            <h5 class="font-weight-bold mt-2">
+                                                                                <span class="badge bg-light"
+                                                                                    style="color:black">
+                                                                                    Etat de paiement :
+                                                                                    {{ $sale->payment_status === 'paid' ? 'Payé' : 'Impayé' }}
+                                                                                </span>
+                                                                            </h5>
+                                                                            {{-- <hr> --}}
+                                                                            {{-- <div
+                                                                                class="d-flex  flex-column justify-content-center  align-items-center">
+                                                                                <span class="font-weight-bold">
+                                                                                    Restaurant xxx
+                                                                                </span>
+                                                                                <span>
+                                                                                    Zaburi
+                                                                                </span>
+                                                                                <span>
+                                                                                    0123456789
+                                                                                </span>
+                                                                            </div> --}}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mt-2 d-flex justify-content-center">
+                                                                    <a href="{{ route('sales.edit', $sale->id) }}"
+                                                                        class="btn btn-sm btn-warning m-2">
+                                                                        <i class="fa fa-edit"></i>
+                                                                    </a>
+                                                                    <a href="#" target="_blank"
+                                                                        class="btn btn-sm btn-primary m-2 "
+                                                                        onclick="print({{ $sale->id }})">
+                                                                        <i class="fas fa-print"></i>
+                                                                    </a>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -95,7 +193,7 @@
                                                                                 {{ $menu->title }}
                                                                             </h5>
                                                                             <h5 class="text-muted">
-                                                                                {{ $menu->price }} DH
+                                                                                {{ $menu->price }} $
                                                                             </h5>
                                                                         </div>
                                                                     </div>

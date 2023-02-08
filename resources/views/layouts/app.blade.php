@@ -85,6 +85,7 @@
                 @include('layouts.alert')
             </div>
         </div>
+        @yield('javascript')
         <main class="py-4">
             @yield('content')
         </main>

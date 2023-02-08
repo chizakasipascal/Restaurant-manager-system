@@ -68,7 +68,7 @@
                                             {{ $menu->title }}
                                         </h5>
                                         <h5 class="text-muted">
-                                            {{ $menu->price }} DH
+                                            {{ $menu->price }} $
                                         </h5>
                                     </div>
                                 </div>
@@ -105,8 +105,8 @@
                                         $
                                     </div>
                                 </div>
-                                <input type="number" name="total_price" class="form-control" placeholder="Prix"
-                                    value="{{ $sale->total_price }}">
+                                <input type="number" name="price" class="form-control" placeholder="Prix"
+                                    value="{{ $sale->price }}">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         .00
@@ -119,8 +119,8 @@
                                         $
                                     </div>
                                 </div>
-                                <input type="number" name="total_received" class="form-control" placeholder="Total"
-                                    value="{{ $sale->total_received }}">
+                                <input type="number" name="total" class="form-control" placeholder="Total"
+                                    value="{{ $sale->total }}">
                                 <div class="input-group-append">
                                     <div class="input-group-text">
                                         .00
