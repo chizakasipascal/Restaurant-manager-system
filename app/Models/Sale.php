@@ -15,7 +15,7 @@ class Sale extends Model
     //
 
     protected $fillable = [
-                            "user_id", "quantity", "price","total",
+                            "serveur_id", "quantity", "price","total",
                             "change", "payment_type", "payment_status"
                             ];
 

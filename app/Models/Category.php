@@ -11,8 +11,8 @@ class Category extends Model
     use HasFactory;
 
     //
-    protected $fillable =['title', 'slug'];
-    
+    protected $fillable =['admin_id','title', 'slug'];
+
     public function menus()
     {
         return $this->hasMany(Menu::class);
@@ -21,6 +21,6 @@ class Category extends Model
     public function getRouteKeyName()
     {
         return "slug";
-    } 
+    }
 
 }
