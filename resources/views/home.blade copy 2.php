@@ -17,16 +17,19 @@
                         {{ __('You are logged in!') }}
 
                         @can('isAdmin')
-                            @include('admin')
+                            <h4 class="text-center"> This is for Admin </h4>
                         @endcan
+
                         @can('isGerant')
-                            @include('gerant')
+                            <h4 class="text-center"> This is for Gerant </h4>
                         @endcan
+
                         @can('isServeur')
-                            @include('servant')
+                            <h4 class="text-center"> This is for Serveur </h4>
                         @endcan
+
                         @can('isClient')
-                            @include('client')
+                            <h4 class="text-center"> This is for Client </h4>
                         @endcan
 
                         <h3>Posts</h3>

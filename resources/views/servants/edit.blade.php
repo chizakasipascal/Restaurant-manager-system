@@ -19,15 +19,15 @@
                                 <form action="{{ route('servants.update', $servant->id) }}" method="post">
                                     @csrf
                                     @method('PUT')
-                                    <div class="form-group">
+                                    <div class="form-group mb-2">
                                         <input type="text" name="name" id="name" class="form-control"
                                             placeholder="Nom & Prénom" value="{{ $servant->name }}">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-2">
                                         <input type="text" name="address" id="address" class="form-control"
                                             placeholder="Addresse" value="{{ $servant->address }}">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-2">
                                         <button class="btn btn-primary">
                                             Valider
                                         </button>

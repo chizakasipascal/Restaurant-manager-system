@@ -20,6 +20,7 @@ class TableFactory extends Factory
         // $name =$faker->name;
         return [
             //
+            "user_id"=>1,
             'name' => fake()->name(),
             'slug' => Str::slug(fake()->name()),
             'status' =>$this->faker->numberBetween(0,1),

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("slug");
             $table->boolean("status");
+            $table->unsignedBigInteger("user_id");
             $table->timestamps();
         });
     }

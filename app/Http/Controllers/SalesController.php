@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
- 
-use App\Models\Table;
-use App\Models\Category;
-use App\Models\Servant;
+
 use App\Models\Sale;
+use App\Models\Table;
+use App\Models\Servant;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SalesController extends Controller
 {
@@ -25,11 +26,11 @@ class SalesController extends Controller
         //
         // $sales = Sale::orderBy("created_at", "DESC")->paginate(10);
         return view("sales.index")->with([
-            "sales" => Sale::paginate(10) 
+            "sales" => Sale::paginate(10)
         ]);
 
         // return view("sales.index")->with([
-        //     "sales" => Sale::latest()->paginate(10) 
+        //     "sales" => Sale::latest()->paginate(10)
         // ]);
 
     }
@@ -44,6 +45,7 @@ class SalesController extends Controller
         //
 
         return view("sales.create")->with([
+            "user_id"=>Auth::user()->id,
             "tables" => Table::all(),
             "categories"=>Category::all(),
             "servants"=>Servant::all()
@@ -60,6 +62,7 @@ class SalesController extends Controller
     {
         //validation
         $this->validate($request, [
+
             "table_id" => "required",
             "menu_id" => "required",
             "servant_id" => "required",
@@ -72,6 +75,7 @@ class SalesController extends Controller
         ]);
         //store data
         $sale = new Sale();
+        $sale->user_id = Auth::user()->id;
         $sale->servant_id = $request->servant_id;
         $sale->quantity = $request->quantity;
         $sale->price = $request->price;
@@ -125,7 +129,7 @@ class SalesController extends Controller
             "servants" => Servant::all()
         ]);
 
-           
+
     }
 
     /**
@@ -152,6 +156,7 @@ class SalesController extends Controller
         //get sale to update
         // $sale = Sales::findOrFail($sale);
         //update data
+        $sale->user_id = Auth::user()->id;
         $sale->servant_id = $request->servant_id;
         $sale->quantity = $request->quantity;
         $sale->total = $request->total;
@@ -162,7 +167,7 @@ class SalesController extends Controller
         $sale->update();
         $sale->menus()->sync($request->menu_id);
         $sale->tables()->sync($request->table_id);
-         
+
         //redirect user
         return redirect()->back()->with([
             // "success" => "Paiement modifié avec succés"

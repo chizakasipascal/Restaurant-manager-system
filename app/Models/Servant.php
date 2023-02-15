@@ -11,12 +11,12 @@ class Servant extends Model
     use HasFactory;
 
      //
-    protected $fillable =['name', 'address'];
-    
+    protected $fillable =['user_id','name', 'address'];
+
     public function sales()
     {
         return $this->hasMany(Sale::class);
     }
 
-      
+
 }

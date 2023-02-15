@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Menu;
+use App\Models\User;
 use App\Models\Table;
 use App\Models\Servant;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,7 @@ class Sale extends Model
     //
 
     protected $fillable = [
-                            "user_id", "quantity", "price","total",
+                             "user_id", "serveur_id", "quantity", "price","total",
                             "change", "payment_type", "payment_status"
                             ];
 
@@ -26,11 +27,15 @@ class Sale extends Model
 
     public function tables()
     {
-        return $this->belongsToMany(Table::class);
+        return $this->belongsToMany(Table::class );
     }
 
     public function servant()
     {
         return $this->belongsTo(Servant::class);
+    }
+     public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

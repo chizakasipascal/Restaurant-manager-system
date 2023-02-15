@@ -18,9 +18,8 @@
                                 <form action="{{ route('categories.store') }}" method="post">
                                     @csrf
                                     <div class="form-group">
-                                        <input type="text" name="title" id="title" class="form-control"
+                                        <input type="text" name="title" id="title" class="form-control mb-2"
                                             placeholder="Titre">
-
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-primary">

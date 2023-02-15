@@ -17,6 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+            $table->bigInteger("user_id")->unsigned();
+            $table->foreign('user_id')
+                ->references("id")
+                ->on("users")->onDelete("cascade");
+
             $table->timestamps();
         });
     }

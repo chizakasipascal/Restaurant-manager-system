@@ -21,12 +21,13 @@ class MenuFactory extends Factory
         // $title = $faker->sentence;
         return [
             //
+           "user_id"=>1,
            "title" =>fake()->sentence(),
            "slug"=> Str::slug(fake()->sentence()),
            "description"=>$this->faker->paragraph,
            "image" =>"https://picsum.photos/600/400",
-           "category_id"=>$this->faker->unique()->numberBetween(1,10), 
-           "price" => $this->faker->numberBetween($min = 100, $max = 500), 
+           "category_id"=>$this->faker->unique()->numberBetween(1,10),
+           "price" => $this->faker->numberBetween($min = 100, $max = 500),
         ];
     }
 }

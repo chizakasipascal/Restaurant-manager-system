@@ -18,11 +18,11 @@
                                 </h3>
                                 <form action="{{ route('servants.store') }}" method="post">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="form-group mb-2">
                                         <input type="text" name="name" id="name" class="form-control"
                                             placeholder="Nom & Prénom">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group mb-2">
                                         <input type="text" name="address" id="address" class="form-control"
                                             placeholder="Addresse">
                                     </div>

@@ -10,13 +10,13 @@ class Table extends Model
 {
     use HasFactory;
     //
-    protected $fillable =['name','status','slug'];
+    protected $fillable =['user_id','name','status','slug'];
 
     public function sales()
     {
         return $this->belongsToMany(Sale::class);
     }
-    
+
     public function getRouteKeyName()
     {
         return "slug";
