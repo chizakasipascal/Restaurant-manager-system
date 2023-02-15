@@ -33,11 +33,12 @@
                                         <div class="row">
 
                                             @foreach ($tables as $table)
-                                                {{-- {{ $table }} --}}
+                                                {{ $table }}
                                                 //TODO: Test if table is close etat
 
 
                                                 {{-- @if ($table->status == 1) --}}
+
                                                 <div class="col-sm-3">
                                                     <div
                                                         class="card p-2 mb-2 d-flex flex-column justify-content-center align-items-center">
@@ -55,6 +56,8 @@
                                                                 <i class="fas fa-edit"></i> </a>
                                                         </div>
                                                         <hr>
+
+
                                                         @foreach ($table->sales as $sale)
                                                             @if ($sale->created_at >= Carbon\Carbon::today())
                                                                 <div style="border :2px dashed pink"
@@ -115,19 +118,7 @@
                                                                                     {{ $sale->payment_status === 'paid' ? 'Payé' : 'Impayé' }}
                                                                                 </span>
                                                                             </h5>
-                                                                            {{-- <hr> --}}
-                                                                            {{-- <div
-                                                                                class="d-flex  flex-column justify-content-center  align-items-center">
-                                                                                <span class="font-weight-bold">
-                                                                                    Restaurant xxx
-                                                                                </span>
-                                                                                <span>
-                                                                                    Zaburi
-                                                                                </span>
-                                                                                <span>
-                                                                                    0123456789
-                                                                                </span>
-                                                                            </div> --}}
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -144,8 +135,13 @@
                                                                 </div>
                                                             @endif
                                                         @endforeach
+
+
                                                     </div>
                                                 </div>
+
+
+
                                                 {{-- @endif --}}
                                             @endforeach
                                         </div>

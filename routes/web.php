@@ -33,10 +33,16 @@ Auth::routes(
 );
 
 
-Route::get('/admin', [AuthorizationConttroller::class, 'index'])->name('gate.index');
+// Route::get('/admin', [AuthorizationConttroller::class, 'index'])->name('gate.index');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
-Route::prefix('admin')->middleware('isAdmin')->group(function(){
+
+Route::prefix('admin')
+// ->middleware('isAdmin')
+->group(function(){
+    Route::get('/admin', [HomeAdminController::class, 'index'])->name('admin');
     Route::resource('categories', CategoryController::class);
     Route::resource('tables', TableController::class);
     Route::resource('servants', ServantController::class);
@@ -46,9 +52,5 @@ Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::post('show/reports', [ReportController::class,'show'])->name("reports.show");
     Route::post('export/reports', [ReportController::class,'generate'])->name("reports.generate");
 });
-
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::get('/admin', [HomeAdminController::class, 'index'])->name('admin');
 
 Route::resource('sales', SalesController::class);
