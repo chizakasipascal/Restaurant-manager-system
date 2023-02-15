@@ -10,7 +10,7 @@ class Table extends Model
 {
     use HasFactory;
     //
-    protected $fillable =['admin_id','name','status','slug'];
+    protected $fillable =['user_id','name','status','slug'];
 
     public function sales()
     {

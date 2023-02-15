@@ -11,7 +11,7 @@ class Category extends Model
     use HasFactory;
 
     //
-    protected $fillable =['admin_id','title', 'slug'];
+    protected $fillable =['user_id','title', 'slug'];
 
     public function menus()
     {

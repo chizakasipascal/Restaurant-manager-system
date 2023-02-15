@@ -11,7 +11,7 @@ class Servant extends Model
     use HasFactory;
 
      //
-    protected $fillable =['admin_id','name', 'address'];
+    protected $fillable =['user_id','name', 'address'];
 
     public function sales()
     {

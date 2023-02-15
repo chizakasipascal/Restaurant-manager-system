@@ -20,11 +20,15 @@ return new class extends Migration
             $table->text("description");
             $table->decimal("price", 8, 2);
             $table->string("image");
-            $table->bigInteger("category_id")->unsigned();
-            $table->timestamps();
-            $table->foreign('category_id')
+            $table->bigInteger("user_id")->unsigned();
+            $table->foreign('user_id')
                 ->references("id")
-                ->on("categories")->onDelete("cascade");
+                ->on("users")->onDelete("cascade");
+            $table->bigInteger("category_id")->unsigned();
+            $table->foreign('category_id')
+            ->references("id")
+            ->on("categories")->onDelete("cascade");
+            $table->timestamps();
         });
     }
 
