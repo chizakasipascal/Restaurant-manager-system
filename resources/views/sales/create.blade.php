@@ -63,6 +63,7 @@
 
 
                                                         @foreach ($table->sales as $sale)
+                                                            {{ $sale }}
                                                             @if ($sale->created_at >= Carbon\Carbon::today())
                                                                 <div style="border :2px dashed pink"
                                                                     class="my-2 shadow w-100" id="{{ $sale->id }}">

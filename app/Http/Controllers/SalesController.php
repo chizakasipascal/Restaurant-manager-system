@@ -62,6 +62,7 @@ class SalesController extends Controller
     {
         //validation
         $this->validate($request, [
+
             "table_id" => "required",
             "menu_id" => "required",
             "servant_id" => "required",
@@ -74,6 +75,7 @@ class SalesController extends Controller
         ]);
         //store data
         $sale = new Sale();
+        $sale->user_id = Auth::user()->id;
         $sale->servant_id = $request->servant_id;
         $sale->quantity = $request->quantity;
         $sale->price = $request->price;
@@ -154,6 +156,7 @@ class SalesController extends Controller
         //get sale to update
         // $sale = Sales::findOrFail($sale);
         //update data
+        $sale->user_id = Auth::user()->id;
         $sale->servant_id = $request->servant_id;
         $sale->quantity = $request->quantity;
         $sale->total = $request->total;

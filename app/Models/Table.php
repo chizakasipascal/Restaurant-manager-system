@@ -14,7 +14,7 @@ class Table extends Model
 
     public function sales()
     {
-        return $this->belongsToMany(Sale::class,'user_id');
+        return $this->belongsToMany(Sale::class);
     }
 
     public function getRouteKeyName()
