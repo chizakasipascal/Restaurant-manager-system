@@ -36,8 +36,7 @@
                                         <div class="row">
 
                                             @foreach ($tables as $table)
-                                                {{ $table }}
-                                                //TODO: Test if table is close etat
+                                                {{-- //TODO: Test if table is close etat --}}
 
 
                                                 {{-- @if ($table->status == 1) --}}
@@ -63,7 +62,6 @@
 
 
                                                         @foreach ($table->sales as $sale)
-                                                            {{ $sale }}
                                                             @if ($sale->created_at >= Carbon\Carbon::today())
                                                                 <div style="border :2px dashed pink"
                                                                     class="my-2 shadow w-100" id="{{ $sale->id }}">
@@ -207,8 +205,6 @@
                                                                 </div>
                                                             @endforeach
                                                         </div>
-
-
 
 
                                                     </div>
