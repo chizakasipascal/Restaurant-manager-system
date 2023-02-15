@@ -40,7 +40,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 
 Route::prefix('admin')
-// ->middleware('isAdmin')
+->middleware('can:isAdmin')
 ->group(function(){
     Route::get('/admin', [HomeAdminController::class, 'index'])->name('admin');
     Route::resource('categories', CategoryController::class);

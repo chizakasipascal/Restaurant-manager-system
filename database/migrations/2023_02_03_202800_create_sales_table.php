@@ -20,10 +20,7 @@ return new class extends Migration
             $table->decimal("price" , 8, 2);
             $table->decimal("total", 8, 2);
             $table->decimal ("change", 8, 2)->default (0);
-            $table->bigInteger("user_id")->unsigned();
-            $table->foreign('user_id')
-                ->references("id")
-                ->on("users")->onDelete("cascade");
+            $table->unsignedBigInteger("user_id");
             $table->string("payment_type")->default("cash");
             $table->string ("payment_status")->default("paid");
             $table->timestamps();

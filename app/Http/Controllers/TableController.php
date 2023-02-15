@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Table;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreTableRequest;
 use App\Http\Requests\UpdateTableRequest;
 
@@ -36,7 +37,7 @@ class TableController extends Controller
     {
         //
          return view("tables.create");
-        
+
     }
 
     /**
@@ -55,6 +56,7 @@ class TableController extends Controller
         //store data
         $name=$request->name;
         Table::create([
+            "user_id"=>Auth::user()->id,
             "name" =>  $name ,
             "slug" => Str::slug($name),
             "status" => $request->status,
@@ -111,6 +113,7 @@ class TableController extends Controller
         //store data
          $name = $request->name;
         $table->update([
+            "user_id"=>Auth::user()->id,
             "name" => $name,
             "slug" => Str::slug($name),
             "status" => $request->status,

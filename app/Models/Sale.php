@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Menu;
+use App\Models\User;
 use App\Models\Table;
 use App\Models\Servant;
 use Illuminate\Database\Eloquent\Model;
@@ -21,16 +22,20 @@ class Sale extends Model
 
     public function menus()
     {
-        return $this->belongsToMany(Menu::class,'user_id');
+        return $this->belongsToMany(Menu::class);
     }
 
     public function tables()
     {
-        return $this->belongsToMany(Table::class,'user_id');
+        return $this->belongsToMany(Table::class );
     }
 
     public function servant()
     {
-        return $this->belongsTo(Servant::class,'user_id');
+        return $this->belongsTo(Servant::class);
+    }
+     public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

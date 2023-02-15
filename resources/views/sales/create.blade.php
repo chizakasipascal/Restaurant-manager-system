@@ -27,6 +27,9 @@
 
                                 </h3>
 
+
+
+
                                 <div class="card">
                                     <h5 class="m-3">Tables disponible</h5>
                                     <div class="card-body">
@@ -56,6 +59,7 @@
                                                                 <i class="fas fa-edit"></i> </a>
                                                         </div>
                                                         <hr>
+
 
 
                                                         @foreach ($table->sales as $sale)
@@ -313,6 +317,12 @@
                                     </div>
 
                                 </div>
+
+
+
+
+
+
                             </div>
                         </div>
                     </div>

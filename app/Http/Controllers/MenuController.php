@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Str;
-use App\Http\Requests\StoreMenuRequest;
-use App\Http\Requests\UpdateMenuRequest;
 use App\Models\Menu;
 use App\Models\Category;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreMenuRequest;
+use App\Http\Requests\UpdateMenuRequest;
+
 class MenuController extends Controller
 {
     public function __construct(){
@@ -63,6 +65,7 @@ class MenuController extends Controller
             $file->move(public_path('images/menus'), $imageName);
             $title = $request->title;
             Menu::create([
+                "user_id"=>Auth::user()->id,
                 "title" => $title,
                 "slug" => Str::slug($title),
                 "description" =>  $request->description,
@@ -88,7 +91,7 @@ class MenuController extends Controller
         //
         return view("menus.show")->with([
             "menu" => $menu
-        ]); 
+        ]);
     }
 
     /**
@@ -134,6 +137,7 @@ class MenuController extends Controller
         }
             $title = $request->title;
             $menu->update([
+                "user_id"=>Auth::user()->id,
                 "title" => $title,
                 "slug" => Str::slug($title),
                 "description" =>  $request->description,
@@ -159,7 +163,7 @@ class MenuController extends Controller
         //         "success" => "menu modifié avec succés"
         //     ]);
         // }
-   
+
     }
 
     /**
@@ -170,7 +174,7 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        
+
         //remove image
         // unlink(public_path('images/menus/' . $menu->image));
         $menu->delete();

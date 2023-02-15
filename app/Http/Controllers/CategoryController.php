@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoryController extends Controller
 {
- 
+
     public function __construct(){
         $this->middleware('auth');
     }
@@ -47,13 +48,14 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         //validation
-         
+
         $this->validate($request,[
             'title' =>'required'
-        ]); 
+        ]);
         // store category
-        $title = $request->title; 
+        $title = $request->title;
         Category::create([
+            'user_id'=>Auth::user()->id,
             'title' =>$title,
             'slug' =>Str::slug($title)
         ]);
@@ -61,7 +63,7 @@ class CategoryController extends Controller
         return redirect()->route("categories.index")->with([
             "success" => "catégorie ajoutée avec succés"
         ]);
-    
+
     }
 
     /**
@@ -105,11 +107,12 @@ class CategoryController extends Controller
          //validation
         $this->validate($request,[
             'title' =>'required'
-        ]); 
+        ]);
         // update category
-        $title = $request->title; 
-      
+        $title = $request->title;
+
         $category->update([
+            'user_id'=>Auth::user()->id,
             'title' =>$title,
             'slug' =>Str::slug($title)
         ]);

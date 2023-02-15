@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Table;
-use App\Models\Category;
-use App\Models\Servant;
 use App\Models\Sale;
+use App\Models\Table;
+use App\Models\Servant;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SalesController extends Controller
 {
@@ -44,6 +45,7 @@ class SalesController extends Controller
         //
 
         return view("sales.create")->with([
+            "user_id"=>Auth::user()->id,
             "tables" => Table::all(),
             "categories"=>Category::all(),
             "servants"=>Servant::all()

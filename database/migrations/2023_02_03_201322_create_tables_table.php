@@ -18,10 +18,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("slug");
             $table->boolean("status");
-            $table->bigInteger("user_id")->unsigned();
-            $table->foreign('user_id')
-                ->references("id")
-                ->on("users")->onDelete("cascade");
+            $table->unsignedBigInteger("user_id");
             $table->timestamps();
         });
     }

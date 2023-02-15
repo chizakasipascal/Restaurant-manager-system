@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Servant;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreServantRequest;
 use App\Http\Requests\UpdateServantRequest;
-use App\Models\Servant;
 
 class ServantController extends Controller
 {
@@ -22,11 +23,11 @@ class ServantController extends Controller
      */
     public function index()
     {
-        // 
+        //
         return view("servants.index")->with([
             "servants" => Servant::paginate(10)
         ]);
-        
+
     }
 
     /**
@@ -48,13 +49,14 @@ class ServantController extends Controller
      */
     public function store(StoreServantRequest $request)
     {
-         
+
         //validation
         $this->validate($request, [
             "name" => "required"
         ]);
         //store data
         Servant::create([
+            "user_id"=>Auth::user()->id,
             "name" => $request->name,
             "address" => $request->address
         ]);
@@ -62,7 +64,7 @@ class ServantController extends Controller
         return redirect()->route("servants.index")->with([
             "success" => "serveur ajouté avec succés"
         ]);
-    
+
     }
 
     /**
@@ -105,11 +107,12 @@ class ServantController extends Controller
     {
          //validation
         $this->validate($request,[
-             "name" => "required" 
-        ]); 
+             "name" => "required"
+        ]);
         // store category
-         
+
         $servant->update([
+             "user_id"=>Auth::user()->id,
             'name' =>$request->name,
             'address' =>$request->address,
         ]);
