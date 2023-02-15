@@ -9,6 +9,8 @@ use App\Http\Controllers\TableController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ServantController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\HomeAdminController;
+use App\Http\Controllers\AuthorizationConttroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,9 @@ Auth::routes(
 );
 
 
+// Route::get('/admin', [AuthorizationConttroller::class, 'index'])->name('gate.index');
+
+
 Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::resource('categories', CategoryController::class);
     Route::resource('tables', TableController::class);
@@ -42,6 +47,7 @@ Route::prefix('admin')->middleware('isAdmin')->group(function(){
     Route::post('export/reports', [ReportController::class,'generate'])->name("reports.generate");
 });
 
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/admin', [HomeAdminController::class, 'index'])->name('admin');
+
 Route::resource('sales', SalesController::class);
