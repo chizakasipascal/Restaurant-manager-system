@@ -15,7 +15,7 @@ class Servant extends Model
 
     public function sales()
     {
-        return $this->hasMany(Sale::class);
+        return $this->hasMany(Sale::class,'user_id');
     }
 
 

@@ -21,16 +21,16 @@ class Sale extends Model
 
     public function menus()
     {
-        return $this->belongsToMany(Menu::class);
+        return $this->belongsToMany(Menu::class,'user_id');
     }
 
     public function tables()
     {
-        return $this->belongsToMany(Table::class);
+        return $this->belongsToMany(Table::class,'user_id');
     }
 
     public function servant()
     {
-        return $this->belongsTo(Servant::class);
+        return $this->belongsTo(Servant::class,'user_id');
     }
 }
