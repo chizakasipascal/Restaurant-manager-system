@@ -19,18 +19,19 @@
                         @can('isAdmin')
                             @include('admin')
                         @endcan
+
                         @can('isGerant')
                             @include('gerant')
                         @endcan
+
                         @can('isServeur')
-                            @include('servant')
+                            @include('serveur')
                         @endcan
+
                         @can('isClient')
                             @include('client')
                         @endcan
 
-                        <h3>Posts</h3>
-                        {{-- <a href="{{ route('post.index') }}" class="btn btn-sm btn-success">See a post</a> --}}
                     </div>
 
 

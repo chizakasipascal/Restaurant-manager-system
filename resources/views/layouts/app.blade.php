@@ -40,14 +40,28 @@
                             Systeme manangement
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('categories.index') }}"> Management categorie</>
-                            </li>
-                            <li><a class="dropdown-item" href="{{ route('sales.create') }}">Management ventes</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="{{ route('reports.index') }}">Voir repports</a>
-                            </li>
+                            @can('isAdmin')
+                                <li><a class="dropdown-item" href="{{ route('categories.index') }}"> Management categorie</>
+                                </li>
+                            @endcan
+
+
+
+                            @can('isGerant')
+                                <li><a class="dropdown-item" href="{{ route('sales.create') }}">Management ventes</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            @endcan
+                            @can('isAdmin')
+                                <li><a class="dropdown-item" href="{{ route('reports.index') }}">Voir repports</a>
+                                </li>
+                            @endcan
+
+                            @can('isServeur')
+                                <H6>Service nos disponible</H6>
+                            @endcan
+
                         </ul>
                     </li>
 
