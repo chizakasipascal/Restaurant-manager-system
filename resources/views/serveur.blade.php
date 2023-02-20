@@ -18,6 +18,8 @@
 
                         <h5>Serveur</h5>
 
+                        {{-- @include('menus.index'); --}}
+
                     </div>
                 </div>
             </div>

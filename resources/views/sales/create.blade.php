@@ -27,9 +27,6 @@
 
                                 </h3>
 
-
-
-
                                 <div class="card">
                                     <h5 class="m-3">Tables disponible</h5>
                                     <div class="card-body">

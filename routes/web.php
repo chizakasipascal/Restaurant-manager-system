@@ -44,7 +44,6 @@ Route::prefix('admin')
 ->group(function(){
     Route::get('/admin', [HomeAdminController::class, 'index'])->name('admin');
     Route::resource('categories', CategoryController::class);
-    Route::resource('tables', TableController::class);
     Route::resource('servants', ServantController::class);
     Route::resource('menus', MenuController::class);
 
@@ -53,4 +52,18 @@ Route::prefix('admin')
     Route::post('export/reports', [ReportController::class,'generate'])->name("reports.generate");
 });
 
-Route::resource('sales', SalesController::class);
+
+
+Route::prefix('gerant')
+->middleware('can:isGerant')
+->group(function(){
+    Route::resource('sales', SalesController::class,"index")->name('gerant');
+
+    // Route::get('/admin', [HomeAdminController::class, 'index'])->name('gerant');
+
+});
+
+
+// Route::post('sales.create', [SalesController::class,'store']);
+
+//
