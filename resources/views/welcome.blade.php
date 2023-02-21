@@ -85,6 +85,8 @@
             <div class="title m-b-md">
                 <i class="fas fa-hamburger"></i> Ngoma action restaurant
             </div>
+            {{-- @include('all.index'); --}}
+
         </div>
     </div>
 </body>
