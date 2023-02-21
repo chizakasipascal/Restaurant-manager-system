@@ -17,10 +17,10 @@ class SalesExports implements FromView
 
 
     public function __construct($from,$to){
-        $this->to = $to; 
+        $this->to = $to;
         $this->from = $from;
         $this->sales=Sale::whereBetween("updated_at",[$from, $to])
-            ->where("payment_status", "paid")->get(); 
+              ->where("payment_status", "paid")->get();
        $this->total = $this->sales->sum("total");
 
     }
@@ -33,7 +33,7 @@ class SalesExports implements FromView
     //     return sale::all();
     // }
 
-    
+
     public function view(): View
     {
         return view('reports.export', [

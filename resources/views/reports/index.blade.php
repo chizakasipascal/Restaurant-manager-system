@@ -11,12 +11,12 @@
                                 <form action="{{ route('reports.show') }}" method="POST">
                                     @csrf
                                     <div class="from-group">
-                                        <label for="form">Start date</label>
+                                        <label for="form">Date de début</label>
                                         <input type="date" name="from" class="form-control" id="form">
                                     </div>
 
                                     <div class="from-group">
-                                        <label for="form">End date</label>
+                                        <label for="form">Date de fin</label>
                                         <input type="date" name="to" class="form-control" id="to">
                                     </div>
                                     <div class="form-group mt-2">
@@ -98,6 +98,7 @@
                                                                 <td>
                                                                     {{ $sale->total }}
                                                                 </td>
+
                                                                 <td>
                                                                     {{ $sale->payment_type === 'cash' ? 'Espéce' : 'Carte bancaire' }}
                                                                 </td>
@@ -111,9 +112,10 @@
                                                 </table>
                                                 <p class="text-danger text-center font-weight-bold">
                                                     <span class="border border-danger p-2">
-                                                        Total : {{ $total }} $
+                                                        Total Payé : {{ $total }} $
                                                     </span>
                                                 </p>
+
                                                 <form action="{{ route('reports.generate') }}" method="post">
                                                     @csrf
                                                     <div class="form-group">

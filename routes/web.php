@@ -10,6 +10,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ServantController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
+use App\Http\Controllers\MenuForAllController;
 use App\Http\Controllers\AuthorizationConttroller;
 
 /*
@@ -24,8 +25,12 @@ use App\Http\Controllers\AuthorizationConttroller;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+     return redirect('/all');
 });
+
+
+Route::get('/all', [MenuForAllController::class, 'index'])->name("all.index");
 
 
 Auth::routes(
@@ -46,7 +51,7 @@ Route::prefix('admin')
     Route::resource('categories', CategoryController::class);
     Route::resource('servants', ServantController::class);
     Route::resource('menus', MenuController::class);
-
+    Route::resource('tables', TableController::class);
     Route::get('reports', [ReportController::class,'index'])->name("reports.index");
     Route::post('show/reports', [ReportController::class,'show'])->name("reports.show");
     Route::post('export/reports', [ReportController::class,'generate'])->name("reports.generate");
@@ -57,7 +62,7 @@ Route::prefix('admin')
 Route::prefix('gerant')
 ->middleware('can:isGerant')
 ->group(function(){
-    Route::resource('sales', SalesController::class,"index")->name('gerant');
+    Route::resource('sales', SalesController::class);
 
     // Route::get('/admin', [HomeAdminController::class, 'index'])->name('gerant');
 
@@ -67,3 +72,7 @@ Route::prefix('gerant')
 // Route::post('sales.create', [SalesController::class,'store']);
 
 //
+
+
+
+

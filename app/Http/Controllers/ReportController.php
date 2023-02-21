@@ -18,7 +18,7 @@ class ReportController extends Controller
     {
         return view("reports.index");
     }
-    
+
     public function show(Request $request){
         $this->validate($request,[
             "from"=>"required",
@@ -28,7 +28,7 @@ class ReportController extends Controller
         $startDate = date("Y-m-d H:i:s", strtotime($request->from . "00:00:00"));
         $endDate = date("Y-m-d H:i:s", strtotime($request->to . "23:59:59"));
         $sales=Sale::whereBetween("updated_at",[$startDate, $endDate])
-            ->where("payment_status", "paid");
+             ->where("payment_status", "paid");
         return view("reports.index")->with([
             "startDate" => $startDate,
             "endDate" => $endDate,
@@ -38,6 +38,6 @@ class ReportController extends Controller
     }
     public  function generate(Request $request)
     {
-       return Excel::download(new SalesExports($request->from, $request->to), "sales.xlsx");
+       return Excel::download(new SalesExports($request->from, $request->to), "{$request->to}.xlsx");
     }
 }
