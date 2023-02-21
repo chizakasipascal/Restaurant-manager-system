@@ -36,6 +36,15 @@
                                     </a>
                                 </div>
                             @endcan
+
+                            @can('isAdmin')
+                                <div class="col-sm-4 d-flex flex-column align-items-center justify-items-center">
+                                    <i class="fa fa-chart-bar fa-4x text-primary"></i>
+                                    <a href="{{ route('agent.index') }}" class="btn btn-link font-weight-bold">
+                                        Enregister user
+                                    </a>
+                                </div>
+                            @endcan
                         </div>
                     </div>
 

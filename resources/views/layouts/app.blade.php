@@ -26,11 +26,13 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{-- {{ config('app.name', 'Laravel') }} --}}
-                    <i class="fas fa-hamburger"></i>
+                @can('isClient')
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{-- {{ config('app.name', 'Laravel') }} --}}
+                        <i class="fas fa-hamburger"></i>
+                    </a>
+                @endcan
 
-                </a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                     <li class="nav-item dropdown">
@@ -55,6 +57,11 @@
                             @endcan
                             @can('isAdmin')
                                 <li><a class="dropdown-item" href="{{ route('reports.index') }}">Voir repports</a>
+                                </li>
+                            @endcan
+
+                            @can('isAdmin')
+                                <li><a class="dropdown-item" href="{{ route('agent.index') }}">Creer un uttilisateur</a>
                                 </li>
                             @endcan
 
