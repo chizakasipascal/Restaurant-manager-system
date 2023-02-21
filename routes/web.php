@@ -26,11 +26,11 @@ use App\Http\Controllers\AuthorizationConttroller;
 
 Route::get('/', function () {
     // return view('welcome');
-     return redirect('/menu');
+     return redirect('/all');
 });
 
 
-Route::get('/menu', [MenuForAllController::class, 'index'])->name("all.index");
+Route::get('/all', [MenuForAllController::class, 'index'])->name("all.index");
 
 
 Auth::routes(
@@ -51,6 +51,7 @@ Route::prefix('admin')
     Route::resource('categories', CategoryController::class);
     Route::resource('servants', ServantController::class);
     Route::resource('menus', MenuController::class);
+    Route::resource('tables', TableController::class);
     Route::get('reports', [ReportController::class,'index'])->name("reports.index");
     Route::post('show/reports', [ReportController::class,'show'])->name("reports.show");
     Route::post('export/reports', [ReportController::class,'generate'])->name("reports.generate");

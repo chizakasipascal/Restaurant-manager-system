@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class MenuForAllController extends Controller
@@ -15,8 +16,8 @@ class MenuForAllController extends Controller
     public function index()
     {
         //
-        return view("menus.index")->with([
-            "menus" => Menu::paginate(5)
+        return view("all.index")->with([
+            "categories" => Category::paginate(5)
         ]);
     }
 }
