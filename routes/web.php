@@ -11,6 +11,7 @@ use App\Http\Controllers\ServantController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\MenuForAllController;
+use App\Http\Controllers\UserRegisterController;
 use App\Http\Controllers\AuthorizationConttroller;
 
 /*
@@ -34,11 +35,11 @@ Route::get('/all', [MenuForAllController::class, 'index'])->name("all.index");
 
 
 Auth::routes(
-//    ["register" => false, "reset" => false]
+    ["register" => false, "reset" => false]
 );
 
 
-// Route::get('/admin', [AuthorizationConttroller::class, 'index'])->name('gate.index');
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -48,6 +49,7 @@ Route::prefix('admin')
 ->middleware('can:isAdmin')
 ->group(function(){
     Route::get('/admin', [HomeAdminController::class, 'index'])->name('admin');
+    Route::resource('agent', UserRegisterController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('servants', ServantController::class);
     Route::resource('menus', MenuController::class);
