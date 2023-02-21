@@ -8,44 +8,29 @@
             @method('PUT')
             <div class="row justify-content-center">
                 <div class="col-md-12">
+
                     <div class="row">
-
-                        <div class="col-md-12 mb-3">
-                            <div class="form-group">
-                                <a href="/payments" class="btn btn-outline-secondary">
-                                    <i class="fa fa-chevron-left"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-
-                        <div class="card-body">
-
-                            <div class="row">
-                                @foreach ($tables as $table)
-                                    <div class="col-md-3">
-                                        <div
-                                            class="card p-2 mb-2 d-flex
+                        @foreach ($tables as $table)
+                            <div class="col-md-3">
+                                <div
+                                    class="card p-2 mb-2 d-flex
                                                     flex-column justify-content-center
                                                     align-items-center
                                                     list-group-item-action">
-                                            <div class="align-self-end">
-                                                <input type="checkbox" name="table_id[]" id="table" checked
-                                                    value="{{ $table->id }}">
-                                            </div>
-                                            <i class="fa fa-chair fa-5x"></i>
-                                            <span class="mt-2 text-muted font-weight-bold">
-                                                {{ $table->name }}
-                                            </span>
-
-                                        </div>
+                                    <div class="align-self-end">
+                                        <input type="checkbox" name="table_id[]" id="table" checked
+                                            value="{{ $table->id }}">
                                     </div>
-                                @endforeach
+                                    <i class="fa fa-chair fa-5x"></i>
+                                    <span class="mt-2 text-muted font-weight-bold">
+                                        {{ $table->name }}
+                                    </span>
+
+                                </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
+
                 </div>
             </div>
             <div class="row justify-content-center mt-2">
@@ -77,7 +62,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 mx-auto">
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <select name="servant_id" class="form-control">
                                     <option value="" selected disabled>
                                         Sérveur
@@ -141,7 +126,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <select name="payment_type" class="form-control">
                                     <option value="" selected disabled>
                                         Type de paiement
@@ -154,7 +139,7 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group mb-2">
                                 <select name="payment_status" class="form-control">
                                     <option value="" selected disabled>
                                         Etat de paiement
