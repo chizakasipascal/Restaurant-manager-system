@@ -41,14 +41,11 @@ class UserRegisterController extends Controller
      */
     public function index()
     {
-
         return view("agent.index")->with([
             "agent" => User::paginate(10)
         ]);
 
     }
-
-
 
 
      /**
@@ -59,14 +56,7 @@ class UserRegisterController extends Controller
      */
     protected function create()
     {
-
         return view("agent.create");
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'role' => 'client',
-        //     'password' => Hash::make($data['password']),
-        // ]);
     }
 
  /**
@@ -90,7 +80,7 @@ class UserRegisterController extends Controller
             // "user_id"=>Auth::user()->id,
             'name' =>  $name ,
             'email' => $request->email,
-            'role' => 'client',
+            'role' => 'gerant',
             'password' => Hash::make($request->password),
         ]);
         //redirect user
@@ -148,8 +138,9 @@ class UserRegisterController extends Controller
     {
         //
         $user->delete();
-        //redirect user
-        return   redirect()->route("agent.index")->with([
+
+        return
+          redirect()->route("agent.index")->with([
             "success" => "User supprimée avec succés"
         ]);
     }
