@@ -6,6 +6,9 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
+                        <a href="{{ route('agent.create') }}"class="btn btn-warning mr-1">
+                            <i class="fas fa-edit">Ajouter un uttlisateur</i>
+                        </a>
                         <table class="table table-hover table-responsive-sm">
                             <thead>
                                 <tr>
@@ -29,18 +32,19 @@
                                         </td>
 
 
-                                        <td class="d-flex flex-row justify-content-center align-items-center ">
+                                        <td class="d-flex flex-row   align-items-center ">
                                             <a href="{{ route('agent.edit', $user->id) }}"class="btn btn-warning mr-1">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form id="{{ $user->id }}" action="#" method="post">
+                                            <form id="{{ $user->id }}" action="{{ route('agent.destroy', $user->id) }}"
+                                                method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button
                                                     onclick="
-                                                                event.preventDefault();
-                                                                if(confirm('Voulez vous supprimer le sérveur {{ $user->name }} ?'))
-                                                                document.getElementById({{ $user->id }}).submit()
+                                                            event.preventDefault();
+                                                            if(confirm('Voulez vous supprimer {{ $user->name }} ?'))
+                                                            document.getElementById({{ $user->id }}).submit()
                                                             "
                                                     class="btn btn-danger m-2">
                                                     <i class="fas fa-trash"></i>

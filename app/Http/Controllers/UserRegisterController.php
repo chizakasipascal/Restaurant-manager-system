@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserRegisterController extends Controller
 {
-      /**
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -31,7 +34,7 @@ class UserRegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-/**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -44,30 +47,82 @@ class UserRegisterController extends Controller
         ]);
 
     }
+
+
+
+
      /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'role' => 'client',
-            'password' => Hash::make($data['password']),
-        ]);
+
+        return view("agent.create");
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'role' => 'client',
+        //     'password' => Hash::make($data['password']),
+        // ]);
     }
 
+ /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \App\Http\Requests\UserRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(UserRequest $request)
+    {
+       //validation
+        $this->validate($request, [
+            "name" => "required|unique:users,name",
+            "email"=>"required|unique:users,email",
+            // "role" => "required"
+        ]);
+        //store data
+        $name=$request->name;
 
+        User::create([
+            // "user_id"=>Auth::user()->id,
+            'name' =>  $name ,
+            'email' => $request->email,
+            'role' => 'client',
+            'password' => Hash::make($request->password),
+        ]);
+        //redirect user
+        return redirect()->route("agent.index")->with([
+            "success" => "taUserble ajoutée avec succés"
+        ]);
+    }
+    /**
+     *update  a new user instance after a valid registration.
+     *
+     * @param  \Illuminate\Http\UserRequest  $request
+     * @param \App\Models\User
+     * @return \Illuminate\Http\Response
+     */
+     public function update(UserRequest $request, User $user)
+     {
+         //validation
+        $this->validate($request, [
+            "name" => "required",
+            "role" => "required"
+        ]);
+        //store data
+        $user->name=$request->name;
+        $user->email =$request->email;
+        $user->role = $request->role;
 
-
-
-
-
-
-
+        $user->update();
+        return
+          redirect()->route("agent.index")->with([
+            "success" => "User modifiée avec succés"
+        ]);
+    }
 
       /**
      * Show the form for editing the specified resource.
@@ -80,6 +135,22 @@ class UserRegisterController extends Controller
         //
         return view("agent.edit")->with([
             "agent" => $agent
+        ]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(User $user)
+    {
+        //
+        $user->delete();
+        //redirect user
+        return   redirect()->route("agent.index")->with([
+            "success" => "User supprimée avec succés"
         ]);
     }
 }

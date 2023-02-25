@@ -15,19 +15,22 @@
                             <div class="col-md-8">
                                 <h3 class="text-secondary border-bottom mb-3 p-2">
                                     <i class="fas fa-plus"></i> Modifier les information lieu a l'uttlisateur
-                                    {{ $agent->name }}
+                                    {{ Str::ucfirst($agent->name) }}
                                 </h3>
-                                <form action="{{ route('servants.update', $agent->id) }}" method="post">
+                                <form action="{{ route('agent.update', $agent->id) }}" method="post">
                                     @csrf
                                     @method('PUT')
                                     <div class="form-group mb-2">
                                         <input type="text" name="name" id="name" class="form-control"
                                             placeholder="Nom & Prénom" value="{{ $agent->name }}">
                                     </div>
-
                                     <div class="form-group mb-2">
-                                        <input type="text" name="role" id="address" class="form-control"
-                                            placeholder="Addresse" value="{{ $agent->role }}">
+                                        <input type="text" name="email" id="email" class="form-control"
+                                            placeholder="Email" value="{{ $agent->email }}">
+                                    </div>
+                                    <div class="form-group mb-2">
+                                        <input type="text" name="role" id="role" class="form-control"
+                                            placeholder="Role" value="{{ $agent->role }}">
                                     </div>
 
                                     <div class="form-group mb-2">
