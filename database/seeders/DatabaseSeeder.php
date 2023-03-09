@@ -40,26 +40,26 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
 
-        User::create([
-            'name' => 'gerant',
-            'email' => 'gerant@gmail.com',
-            'password' => bcrypt('123456'),
-            'role' => 'gerant'
-        ]);
+        // User::create([
+        //     'name' => 'gerant',
+        //     'email' => 'gerant@gmail.com',
+        //     'password' => bcrypt('123456'),
+        //     'role' => 'gerant'
+        // ]);
 
-        User::create([
-            'name' => 'serveur',
-            'email' => 'serveur@gmail.com',
-            'password' => bcrypt('123456'),
-            'role' => 'serveur'
-        ]);
+        // User::create([
+        //     'name' => 'serveur',
+        //     'email' => 'serveur@gmail.com',
+        //     'password' => bcrypt('123456'),
+        //     'role' => 'serveur'
+        // ]);
 
-         User::create([
-            'name' => 'client',
-            'email' => 'client@gmail.com',
-            'password' => bcrypt('123456'),
-            'role' => 'client'
-        ]);
+        //  User::create([
+        //     'name' => 'client',
+        //     'email' => 'client@gmail.com',
+        //     'password' => bcrypt('123456'),
+        //     'role' => 'client'
+        // ]);
 
 
 

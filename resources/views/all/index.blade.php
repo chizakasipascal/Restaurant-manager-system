@@ -13,7 +13,7 @@
                             <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 @foreach ($categories as $category)
                                     <li class="nav-item">
-                                        <a class="nav-link mr-1 {{ $category->slug === 'samaki' ? 'active' : '' }}"
+                                        <a class="nav-link mr-1 {{ $category->slug === 'diner' ? 'active' : '' }}"
                                             data-toggle="pill" id="{{ $category->slug }}-tab" href="#{{ $category->slug }}"
                                             role="tab" aria-controls="{{ $category->slug }}" aria-selected="true">
                                             {{ $category->title }}
@@ -25,7 +25,7 @@
                             </ul>
                             <div class="tab-content" id="pills-tabcontent">
                                 @foreach ($categories as $category)
-                                    <div class="tab-pane fade {{ $category->slug === 'samaki' ? 'show active' : '' }}"
+                                    <div class="tab-pane fade {{ $category->slug === 'diner' ? 'show active' : '' }}"
                                         id="{{ $category->slug }}" role="tabpanel" aria-labelledby="pills-home-tab">
                                         <div class="row">
                                             @foreach ($category->menus as $menu)

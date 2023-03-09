@@ -32,6 +32,10 @@
                             @include('client')
                         @endcan
 
+                        @can('isBlock')
+                            @include('block')
+                        @endcan
+
                     </div>
 
 

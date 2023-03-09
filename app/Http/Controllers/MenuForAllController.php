@@ -17,7 +17,7 @@ class MenuForAllController extends Controller
     {
         //
         return view("all.index")->with([
-            "categories" => Category::paginate(5)
+            "categories" => Category::all()
         ]);
     }
 }
