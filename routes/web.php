@@ -14,19 +14,8 @@ use App\Http\Controllers\MenuForAllController;
 use App\Http\Controllers\UserRegisterController;
 use App\Http\Controllers\AuthorizationConttroller;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
-    // return view('welcome');
      return redirect('/all');
 });
 
@@ -38,12 +27,7 @@ Auth::routes(
     ["register" => false, "reset" => false]
 );
 
-
-
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-
 
 Route::prefix('admin')
 ->middleware('can:isAdmin')
@@ -59,22 +43,8 @@ Route::prefix('admin')
     Route::post('export/reports', [ReportController::class,'generate'])->name("reports.generate");
 });
 
-
-
 Route::prefix('gerant')
 ->middleware('can:isGerant')
 ->group(function(){
     Route::resource('sales', SalesController::class);
-
-    // Route::get('/admin', [HomeAdminController::class, 'index'])->name('gerant');
-
 });
-
-
-// Route::post('sales.create', [SalesController::class,'store']);
-
-//
-
-
-
-

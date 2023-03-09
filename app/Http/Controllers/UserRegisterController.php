@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -80,7 +81,7 @@ class UserRegisterController extends Controller
             // "user_id"=>Auth::user()->id,
             'name' =>  $name ,
             'email' => $request->email,
-            'role' => 'gerant',
+            'role' => 'block',
             'password' => Hash::make($request->password),
         ]);
         //redirect user
@@ -92,26 +93,33 @@ class UserRegisterController extends Controller
      *update  a new user instance after a valid registration.
      *
      * @param  \Illuminate\Http\UserRequest  $request
-     * @param \App\Models\User
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-     public function update(UserRequest $request, User $user)
+     public function update(UserRequest $request )
      {
          //validation
         $this->validate($request, [
             "name" => "required",
             "role" => "required"
         ]);
-        //store data
-        $user->name=$request->name;
-        $user->email =$request->email;
-        $user->role = $request->role;
+        $userUpdated = User::find($request->id);
 
-        $user->update();
-        return
+         $userUpdated->update($request->all());
+
+if ($request->role=="block") {
+  return
+          redirect()->route("agent.index")->with([
+            "success" => "User modifiée avec block "
+        ]);
+}else{
+return
           redirect()->route("agent.index")->with([
             "success" => "User modifiée avec succés"
         ]);
+}
+
+
     }
 
       /**
@@ -134,14 +142,16 @@ class UserRegisterController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(UserRequest $user)
     {
-        //
-        $user->delete();
 
-        return
-          redirect()->route("agent.index")->with([
-            "success" => "User supprimée avec succés"
-        ]);
+
+        // // $user->delete();
+        //  $userUpdated = User::find($user->id);
+
+        // return
+        //   redirect()->route("agent.index")->with([
+        //     "success" => "User supprimée avec succés"
+        // ]);
     }
 }

@@ -36,10 +36,11 @@
                                             <a href="{{ route('agent.edit', $user->id) }}"class="btn btn-warning mr-1">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form id="{{ $user->id }}" action="{{ route('agent.destroy', $user->id) }}"
+                                            {{-- <form id="{{ $user->id }}" action="{{ route('agent.destroy', $user->id) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('DELETE')
+
                                                 <button
                                                     onclick="
                                                             event.preventDefault();
@@ -49,7 +50,7 @@
                                                     class="btn btn-danger m-2">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
-                                            </form>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                 @endforeach
